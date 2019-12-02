@@ -8,9 +8,9 @@ namespace Assessment_ClientApp2
     // **************************************************
     //
     // Assessment: Client App 2.0
-    // Author: 
-    // Dated: 
-    // Level (Novice, Apprentice, or Master): 
+    // Author: Sortzi, Sammi
+    // Dated: 12/1/2019
+    // Level (Novice, Apprentice, or Master): Apprentice
     //
     // **************************************************    
 
@@ -59,21 +59,45 @@ namespace Assessment_ClientApp2
                 {
                     Name = "Sid",
                     Age = 145,
-                    Attitude = Monster.EmotionalState.happy
+                    Attitude = Monster.EmotionalState.happy,
+                    Type = Monster.Tribe.vampire,
+                    Active = true
                 },
 
                 new Monster()
                 {
                     Name = "Lucy",
                     Age = 125,
-                    Attitude = Monster.EmotionalState.bored
+                    Attitude = Monster.EmotionalState.bored,
+                    Type = Monster.Tribe.witch,
+                    Active = true
                 },
 
                 new Monster()
                 {
                     Name = "Bill",
                     Age = 934,
-                    Attitude = Monster.EmotionalState.sad
+                    Attitude = Monster.EmotionalState.sad,
+                    Type = Monster.Tribe.werewolf,
+                    Active = false
+                },
+
+                new Monster()
+                {
+                    Name = "Sue",
+                    Age = 121,
+                    Attitude = Monster.EmotionalState.angry,
+                    Type = Monster.Tribe.elf,
+                    Active = true
+                },
+
+                new Monster()
+                {
+                    Name = "Fred",
+                    Age = 24,
+                    Attitude = Monster.EmotionalState.happy,
+                    Type = Monster.Tribe.vampire,
+                    Active = true
                 }
 
             };
@@ -237,6 +261,10 @@ namespace Assessment_ClientApp2
             Console.Write("\tAttitude: ");
             Enum.TryParse(Console.ReadLine(), out Monster.EmotionalState attitude);
             newMonster.Attitude = attitude;
+            Console.WriteLine("\tTribe: ");
+            Enum.TryParse(Console.ReadLine(), out Monster.Tribe type);
+            Console.WriteLine("\tActive: ");
+            bool.TryParse(Console.ReadLine(), out bool active);
 
             //
             // echo new monster properties
@@ -400,6 +428,22 @@ namespace Assessment_ClientApp2
                 selectedMonster.Attitude = attitude;
             }
 
+            Console.Write($"\tCurrent Tribe: {selectedMonster.Type} New Tribe: ");
+            userResponse = Console.ReadLine();
+            if (userResponse != "")
+            {
+                Enum.TryParse(userResponse, out Monster.Tribe Type);
+                selectedMonster.Type = Type;
+            }
+
+            Console.WriteLine($"\tCurrent Active Status: {selectedMonster.Active} New Active Status: ");
+            userResponse = Console.ReadLine();
+            if (userResponse != "")
+            {
+                bool.TryParse(userResponse, out bool active);
+                selectedMonster.Active = active;
+            }
+
             //
             // echo updated monster properties
             //
@@ -466,7 +510,9 @@ namespace Assessment_ClientApp2
                 string monsterString =
                     monsters[index].Name + "," +
                     monsters[index].Age + "," +
-                    monsters[index].Attitude;
+                    monsters[index].Attitude + "," +
+                    monsters[index].Type + "," +
+                    monsters[index].Active;
 
                 monstersString[index] = monsterString;
             }
@@ -513,6 +559,12 @@ namespace Assessment_ClientApp2
                 Enum.TryParse(monsterProperties[2], out Monster.EmotionalState attitude);
                 newMonster.Attitude = attitude;
 
+                Enum.TryParse(monsterProperties[3], out Monster.Tribe type);
+                newMonster.Type = type;
+
+                bool.TryParse(monsterProperties[4], out bool active);
+                newMonster.Active = active;
+
                 //
                 // add new monster to list
                 //
@@ -535,6 +587,8 @@ namespace Assessment_ClientApp2
             Console.WriteLine($"\tName: {monster.Name}");
             Console.WriteLine($"\tAge: {monster.Age}");
             Console.WriteLine($"\tAttitude: {monster.Attitude}");
+            Console.WriteLine($"\tTribe: {monster.Type}");
+            Console.WriteLine($"\tActive: {monster.Active}");
             Console.WriteLine("\t" + monster.Greeting());
         }
 

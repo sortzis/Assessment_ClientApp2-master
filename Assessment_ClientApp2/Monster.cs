@@ -19,12 +19,22 @@ namespace Assessment_ClientApp2
             angry,
             bored
         }
+        public enum Tribe
+        {
+            none,
+            vampire,
+            werewolf,
+            witch,
+            elf
+        }
 
         #region FIELDS
 
         private string _name;
         private int _age;
         private EmotionalState _attitude;
+        private Tribe _type;
+        private bool _active;
 
         #endregion
 
@@ -48,6 +58,18 @@ namespace Assessment_ClientApp2
             set { _attitude = value; }
         }
 
+        public Tribe Type
+        {
+            get { return _type; }
+            set { _type = value; }
+        }
+
+        public bool Active
+        {
+            get { return _active; }
+            set { _active = value; }
+        }
+
         #endregion
 
         #region CONSTRUCTORS
@@ -57,12 +79,14 @@ namespace Assessment_ClientApp2
 
         }
 
-        public Monster(string name, int age, EmotionalState attitude)
+        public Monster(string name, int age, EmotionalState attitude, Tribe type, bool active)
         {
             _name = name;
             _age = age;
             _attitude = attitude;
-        }
+            _type = type;
+            _active = active;
+    }
 
         #endregion
         
